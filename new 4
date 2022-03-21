@@ -1,0 +1,75 @@
+面试总结
+1. spring事务的传播特性
+nerver  子方法和父方法都没有事务
+not-support 子方法没有事务 父方法可以有
+support 子方法可以有事务也可以没有  父方法有事务  子方法就用父方法的事务
+requires 子方法必须有事务 父方法可以没有  父方法有事务的话 子方法事务先执行  父方法事务挂起
+nested 子方法必须有事务 父方法可有可无  父方法有事务的话  子方法和父方法事务共享
+required 子方法必须有事务  父方法可有可无  父方法有事务的话  子方法加入父方法事务
+mandator 子方法必须有事务  父方法必须有事务 没有就抛异常 
+
+2. 线程池提交的两种方式 summit和excute的区别
+summit入参可以传入 callable接口和runable接口的实现
+excute只能传入callable
+
+summit在线程异常时不会直接抛出异常 会在futrue.get时抛出异常
+excute会直接在线程异常时抛出异常
+
+3. 快速排序的思想
+选取最左边一个节点pivot节点
+然后交替左和右两个方向选取节点与pivot节点进行比较 如果左边的比pivot大就放到的右下标上，这时开始移动右下标
+如果左边比pivot小就继续移动左下标，直到左边数字比pivot大为止 如果右下标数字比pivot小 则将数字放到左下标 然后开始移动左下标
+如果右下标数字比pivot大  则继续移动右下标  直到右边数字比pivot小为止，依次交替，直到左右下标重合。然后再次选取最左边的节点为pivot节点，
+直到左右子序列为1为止
+
+4. controller入参上面的注解有哪些 @requestbody @PathVariable @RequestParam @cookievalue
+
+
+5.IO密集型和CPU密集型该如何创建线程池
+CPU密集型任务应配置尽可能小的线程，如配置CPU数目+1个线程的线程池。
+由于IO密集型任务线程并不是一直在执行任务，则应配置尽可能多的线程，如2*CPU数目。
+
+
+6.final关键字
+对于基本数据类型 使用final关键字后就不能改变了  对于引用数据类型 使用final关键字后就不能指向新的对象了 
+关键点  final关键字修饰后引用地址无法改变了
+final关键字可以修饰class 方法  全局变量和局部变量
+List集合使用关键字后可添加新的值  因为final关键字只是让list的引用地址不能发生改变  而add操作只是去修改List的内存大小
+
+
+7.序列化有哪几种方式
+实现serializable接口
+实现Externalizable接口
+
+
+8.SpringBoot 自动装配
+@EnableAutoConfiguration注解中有一个@import(AutoConfigurationImportSelector.class) 
+而AutoconfigurationImportSelector这个类继承了ImportSelector里面的selectImpor方法 这个方法会在被bean实例化后被调用 
+该方法会通过springfactoriesloader去加载spring.factories文件 获取配置类信息，然后将通过条件筛选 排除不符合条件的配置类 最终完成装配
+
+9.Springboot启动原理
+
+
+10.bean的作用域
+
+11.bean的生命周期
+
+
+12.spring 如何解决循环依赖
+
+13.Autowired原理
+
+14@configuration 和@component
+
+15Beanfactory和applicationContenx的区别
+
+
+16.uuid 和 自增ID 的区别
+
+
+
+
+
+
+
+
